@@ -1,0 +1,9 @@
+ujson
+gensim
+fasttext
+transformers
+h5py
+tensorboardX
+ipdb
+opt_einsum
+torch_ema
