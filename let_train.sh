@@ -26,5 +26,5 @@ CUDA_VISIBLE_DEVICES=0 python main.py \
     --subword_aggr max \
     --init_std 1e-2 \
     --dp 0.2 \
-    --continue_from /workspace/nested_ner/output/sagri-SpanAttModelV3-biobert-base-cased-v1.1-1.0-1.0-2-30-200-0.01-max-context-bbl-word_0.2-char_50_0.2-pos_50_0.2-lstm_1024_0.2_2-sps-warm0.0-0.0-len_192-epoch_40-lr_3e-05_0.0005_0.0-bsz_128-tti-mlpdp_0.2-/epoch30.pth
+    --continue_from /workspace/nner/checkpoint_nner/epoch34.pth
     #--continue_from /workspace/nested_ner/output/sagri-SpanAttModelV3-biobert-base-cased-v1.1-1.0-1.0-2-30-200-0.01-max-context-bbl-word_0.2-char_50_0.2-pos_50_0.2-lstm_1024_0.2_2-sps-warm0.0-0.0-len_192-epoch_15-lr_3e-05_0.0005_0.0-bsz_128-tti-mlpdp_0.2-/epoch7.pth

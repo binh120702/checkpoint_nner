@@ -149,7 +149,7 @@ def run(args):
     best_epoch_idx = 0
 
     for epoch_idx in range(1, args.train_epoch + 1):
-        epoch_dev_metric, epoch_test_metric, steps = train_one_epoch(model, steps, train_dataloader, dev_dataloader, test_dataloader, optimizer, scheduler, writer, args, epoch_idx, ema)
+        epoch_dev_metric, epoch_test_metric, steps = train_one_epoch(model, steps, train_dataloader, dev_dataloader, test_dataloader, optimizer, scheduler, writer, args, epoch_idx, ema, output_basename)
         
         print('Dev_Epoch' + str(epoch_idx), epoch_dev_metric)
         print('Test_Epoch' + str(epoch_idx), epoch_test_metric)
@@ -214,8 +214,8 @@ def run(args):
     write_predict(test_strict, os.path.join(output_path, 'test_predict.txt'))
 
 
-def train_one_epoch(model, steps, train_dataloader, dev_dataloader, test_dataloader, optimizer, scheduler, writer, args, epoch_idx, ema):
-    output_basename = generate_output_folder_name(args)
+def train_one_epoch(model, steps, train_dataloader, dev_dataloader, test_dataloader, optimizer, scheduler, writer, args, epoch_idx, ema, output_basename):
+    # output_basename = generate_output_folder_name(args)
     output_path = os.path.join(args.output_base_dir, output_basename) 
     
     model.train()

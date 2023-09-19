@@ -12,7 +12,7 @@ import h5py
 
 class NestedNERDataset(Dataset):
     def __init__(self, version, mode, tokenizer, truncate_length=128, schema="span", use_context=True,
-                 token_schema="BIES", soft_iou=0.7, bert_embed="", infer = "none_infer_selected"):
+                 token_schema="BIES", soft_iou=0.7, bert_embed="", infer = ""):
         self.version = version
         self.mode = mode
         self.schema = schema
@@ -25,7 +25,7 @@ class NestedNERDataset(Dataset):
         for t in tokenizer.split(','):
             self.tokenizer_list.append(AutoTokenizer.from_pretrained(t))
         
-        if infer == "none_infer_selected":
+        if infer == "":
             self.file_path = self._get_file_path(self.version, self.mode)
         else:
             self.file_path = infer
