@@ -44,7 +44,7 @@ class TextEncoder(nn.Module):
         self.bert_config_list = []
         self.bert_model_path_list = bert_model_path_list.split(',')
         for bert_model_path in self.bert_model_path_list:
-            print(bert_model_path)
+            # print(bert_model_path)
             if bert_model_path.lower().find('kebio') == -1:
                 self.bert_list.append(AutoModel.from_pretrained(bert_model_path))
                 self.bert_config_list.append(AutoConfig.from_pretrained(bert_model_path))

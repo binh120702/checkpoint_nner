@@ -146,7 +146,9 @@ def generate_parser():
     parser.add_argument("--tag", type=str, default="")
     parser.add_argument("--continue_from", type=str, default="")
     parser.add_argument("--infer", type=str, default="")
+    parser.add_argument("--infer_id", type=str, default="")
     parser.add_argument("--infer_checkpoint", type=str, default="")
+    parser.add_argument("--fixed_output", type=str, default="")
     
     
     return parser

@@ -36,18 +36,22 @@ def run(args):
         np.random.seed(args.seed)
         random.seed(args.seed) 
 
-    output_basename_othername = generate_output_folder_name(args)
+    # output_basename_othername = generate_output_folder_name(args)
     output_basename = str(datetime.datetime.now()).replace(" ", "_")
     writer = SummaryWriter(comment=output_basename[0:200])
     output_path = os.path.join(args.output_base_dir, output_basename)
-    bakeup_path = os.path.join(output_path, output_basename_othername)
-    if os.path.exists(f'{output_path}/metric_log'):
+    
+    if args.fixed_output != "":
+        output_path = str(args.fixed_output)
+    
+    if args.fixed_output == "" and os.path.exists(f'{output_path}/metric_log'):
         print('Metric Log exists.')
         sys.exit()
 
     try:
         os.system(f"mkdir -p {output_path}")
-        os.system(f"mkdir -p {bakeup_path}")
+        # if args.fixed_output == "" :
+        #     os.system(f"mkdir -p {bakeup_path}")
     except BaseException:
         pass
 
@@ -128,14 +132,15 @@ def run(args):
     
     if args.infer != "":
         # infer a specific file from a checkpoint
-        print(f'Infer file {args.infer} from checkpoint {args.infer_checkpoint}')
+        # print(f'Infer file {args.infer} from checkpoint {args.infer_checkpoint}')
         model = torch.load(args.infer_checkpoint).to(args.device)
         if ema is not None:
             ema = torch.load(best_ema).to(args.device)
         test_strict, test_relax = decode(test_dataloader, model, args, ema)
         
-        write_predict(test_strict, os.path.join(output_path, 'infer_predict.txt'))
-        sys.exit()
+        write_predict(test_strict, os.path.join(output_path, f'infer_predict_{args.infer_id}.txt'))
+        torch.cuda.empty_cache()
+        return
     
     steps = 0
     best_dev_metric = None

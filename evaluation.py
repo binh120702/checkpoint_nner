@@ -18,7 +18,7 @@ def decode(dataloader, model, args, ema=None):
     
     if ema is None:
         with torch.no_grad():
-            for batch in dataloader:
+            for batch in tqdm(dataloader):
                 inputs = prepare_input(batch, args, train=False)
                 result = model.predict(**inputs)
 
@@ -28,7 +28,7 @@ def decode(dataloader, model, args, ema=None):
     else:
         with torch.no_grad():
             with ema.average_parameters():
-                for batch in dataloader:
+                for batch in tqdm(dataloader):
                     inputs = prepare_input(batch, args, train=False)
                     result = model.predict(**inputs)
 
