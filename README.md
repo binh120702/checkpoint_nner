@@ -1,4 +1,5 @@
-# Install dependencies
+# Labeling nested ner from a checkpoint
+## Install dependencies
 
 First, you need to install virtualenv:
 
@@ -52,9 +53,9 @@ $ gdown 1AEO0Zek7_i1PZLpwGYeSrsd7HkbSl-Zv
 
 The model checkpoint is now stored inside `checkpoint_nner`.
 
-# Usage
+## Usage
 
-## For inference/labeling data
+### For inference/labeling data
 
 First, put all the data you want to label inside a `data` folder. Then, replace the `DATA_FOLDER` and `CHECKPOINT_PATH` var in the code `infer_multiple_files.py` by the path to the `data` folder and *checkpoint* path.
 
@@ -73,7 +74,7 @@ Make sure that the `data` folder only contains the data you want to label. The d
 ]
 ```
 
-You can also modify the `infer_multiple_files.py` code to change the *batch size* (number of abstracts to label at once). The default values is 50.
+You can also modify the `infer_multiple_files.py` code to change the *batch size* (number of abstracts to label at once). The default values is 200.
 
 Then, run the following command:
 
